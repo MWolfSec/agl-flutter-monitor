@@ -6,7 +6,6 @@ import 'package:flutter_monitor/kuksa-server/intial_connection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yaml/yaml.dart';
 
-
 class GetConfig extends ConsumerStatefulWidget {
   const GetConfig({Key? key, required this.client}) : super(key: key);
   final HttpClient client;
@@ -21,9 +20,9 @@ class _GetConfigState extends ConsumerState<GetConfig> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       final configStateProvider = ref.read(ConfigStateprovider.notifier);
-
-      String configFilePath = '/etc/xdg/AGL/MONITOR_config.yaml';
-
+      //for deployment on AGL use /etc/xdg path
+      //String configFilePath = '/etc/xdg/AGL/MONITOR_config.yaml';
+      String configFilePath = 'extras/MONITOR_config.yaml';
 
       final configFile = File(configFilePath);
       configFile.readAsString().then((content) {
@@ -42,20 +41,19 @@ class _GetConfigState extends ConsumerState<GetConfig> {
     final config = ref.watch(ConfigStateprovider);
     if (config.hostname == "" ||
         config.port == 0 ||
-        config.kuksaAuthToken == ""
-        ) {
+        config.kuksaAuthToken == "") {
       return Scaffold(
         body: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
-                Text("ERROR",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                Text(
-                    "Something Wrong with config file! Check config.yaml file and restart"),
-              ],
-            )),
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: const [
+            Text("ERROR",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            Text(
+                "Something Wrong with config file! Check config.yaml file and restart"),
+          ],
+        )),
       );
     }
     return InitialScreen(client: widget.client);
@@ -67,7 +65,6 @@ class Config {
     required this.hostname,
     required this.port,
     required this.kuksaAuthToken,
-
   });
   final String hostname;
   final int port;
@@ -86,9 +83,8 @@ class Config {
       );
 }
 
-final ConfigStateprovider =
-StateNotifierProvider<ConfigStateNotifier, Config>(
-        (ref) => ConfigStateNotifier());
+final ConfigStateprovider = StateNotifierProvider<ConfigStateNotifier, Config>(
+    (ref) => ConfigStateNotifier());
 
 class ConfigStateNotifier extends StateNotifier<Config> {
   ConfigStateNotifier() : super(_initialValue);
