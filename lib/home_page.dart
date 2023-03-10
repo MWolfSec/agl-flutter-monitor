@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
     SizeConfig().init(context);
 
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Color.fromARGB(255, 1, 90, 97),
         body: Theme(
           data: Theme.of(context).copyWith(
             // Disable splash animations
@@ -37,46 +37,89 @@ class HomePage extends StatelessWidget {
             children: [
               Container(height: SizeConfig.screenHeight * 0.0125),
               Flexible(
-                  flex: 4,
+                  flex: 1,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Column(
                         children: [
                           Text(
-                            'Left',
+                            'Vehicle Monitor Demo',
                             style: TextStyle(
                               fontSize: SizeConfig.fontsize * 4,
                               fontWeight: FontWeight.w700,
-                              color: Colors.lightBlueAccent,
+                              color: Color.fromARGB(255, 255, 255, 255),
                             ),
                           ),
-                          SizedBox(
-                              height: SizeConfig.screenHeight / 10,
-                              width: SizeConfig.screenWidth / 10,
-                              child: Image.asset('images/left_climate.PNG')),
-                          LeftClimateScrollWidget(socket: socket),
+                          /*SizedBox(
+                            height: SizeConfig.screenHeight / 10,
+                            width: SizeConfig.screenWidth / 10,
+                            child: Image.asset('images/left_climate.PNG')),
+                            */
+                          //LeftClimateScrollWidget(socket: socket),
                         ],
                       ),
-                      Column(
-                        children: [
+                      /* Column(
+                      children: [
                           Text(
-                            'Right',
-                            style: TextStyle(
-                              fontSize: SizeConfig.fontsize * 4,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.lightBlueAccent,
-                            ),
+                          'Right',
+                          style: TextStyle(
+                            fontSize: SizeConfig.fontsize * 4,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.lightBlueAccent,
                           ),
-                          SizedBox(
-                              height: SizeConfig.screenHeight / 10,
-                              width: SizeConfig.screenWidth / 10,
-                              child: Image.asset('images/right_climate.PNG')),
-                          RightClimateScrollWidget(socket: socket),
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                            height: SizeConfig.screenHeight / 10,
+                            width: SizeConfig.screenWidth / 10,
+                            child: Image.asset('images/right_climate.PNG')),
+                        RightClimateScrollWidget(socket: socket), 
+                      ],
+                    ), */
                     ],
                   )),
+              Container(height: SizeConfig.screenHeight * 0.0125),
+              Flexible(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      Text('CAN Traffic',
+                          style: TextStyle(
+                            fontSize: SizeConfig.fontsize * 4,
+                            fontWeight: FontWeight.w700,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          )),
+                    ],
+                  )),
+              Flexible(
+                  flex: 4,
+                  child: Row(
+                    children: [
+                      Text(
+                          'Lorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\n',
+                          style: TextStyle(
+                            fontSize: SizeConfig.fontsize * 2,
+                            fontWeight: FontWeight.w400,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          )),
+                    ],
+                  )),
+              Flexible(
+                flex: 1,
+                child: Row(
+                  children: [
+                    Container(
+                      height: SizeConfig.screenHeight * 0.10,
+                    ),
+                    Text('Boost Control',
+                        style: TextStyle(
+                          fontSize: SizeConfig.fontsize * 4,
+                          fontWeight: FontWeight.w700,
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        )),
+                  ],
+                ),
+              ),
               Flexible(
                   flex: 2,
                   child: Row(
@@ -96,7 +139,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ],
                   )),
-              Flexible(
+              /* Flexible(
                   flex: 3,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -164,7 +207,7 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                     ],
-                  )),
+                  )), */
             ],
           ),
         ));
