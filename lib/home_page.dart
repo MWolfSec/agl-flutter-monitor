@@ -142,54 +142,118 @@ class HomePage extends StatelessWidget {
                                   fontWeight: FontWeight.w400,
                                   color: Color.fromARGB(255, 255, 255, 255),
                                 )),
+                            DataText(
+                                socket: socket,
+                                serverPath:
+                                    'Vehicle.Powertrain.CombustionEngine.Speed'),
+                          ]),
+                          Row(children: [
+                            Text('Current Gear: ',
+                                style: TextStyle(
+                                  fontSize: SizeConfig.fontsize * 2,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                )),
+                            DataText(
+                                socket: socket,
+                                serverPath:
+                                    'Vehicle.Powertrain.Transmission.CurrentGear'),
                           ])
                         ]),
                         Column(
                           children: [
-                            Text('Engine Power: ',
-                                style: TextStyle(
-                                  fontSize: SizeConfig.fontsize * 2,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                )),
-                            Text('Engine Torque: ',
-                                style: TextStyle(
-                                  fontSize: SizeConfig.fontsize * 2,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                )),
+                            Row(children: [
+                              Text('Engine Power: ',
+                                  style: TextStyle(
+                                    fontSize: SizeConfig.fontsize * 2,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                  )),
+                              DataText(
+                                  socket: socket,
+                                  serverPath:
+                                      "Vehicle.Powertrain.CombustionEngine.Power"),
+                            ]),
+                            Row(children: [
+                              Text('Engine Torque: ',
+                                  style: TextStyle(
+                                    fontSize: SizeConfig.fontsize * 2,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                  )),
+                              DataText(
+                                  socket: socket,
+                                  serverPath:
+                                      "Vehicle.Powertrain.CombustionEngine.Torque"),
+                            ]),
+                            Row(children: [
+                              Text('Engine Oil Temp: ',
+                                  style: TextStyle(
+                                    fontSize: SizeConfig.fontsize * 2,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                  )),
+                              DataText(
+                                  socket: socket,
+                                  serverPath:
+                                      "Vehicle.Powertrain.CombustionEngine.EOT"),
+                            ]),
                           ],
                         ),
                         Column(
                           children: [
-                            Text('Fuel Level: ',
-                                style: TextStyle(
-                                  fontSize: SizeConfig.fontsize * 2,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                )),
-                            Text('Fuel Consumption: ',
-                                style: TextStyle(
-                                  fontSize: SizeConfig.fontsize * 2,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                )),
+                            Row(children: [
+                              Text('Fuel Level: ',
+                                  style: TextStyle(
+                                    fontSize: SizeConfig.fontsize * 2,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                  )),
+                              DataText(
+                                  socket: socket,
+                                  serverPath:
+                                      "Vehicle.Powertrain.FuelSystem.Level"),
+                            ]),
+                            Row(children: [
+                              Text('Fuel Consumption: ',
+                                  style: TextStyle(
+                                    fontSize: SizeConfig.fontsize * 2,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                  )),
+                              DataText(
+                                  socket: socket,
+                                  serverPath:
+                                      "Vehicle.Powertrain.FuelSystem.InstantConsumption"),
+                            ]),
                           ],
                         ),
                         Column(
                           children: [
-                            Text('Latitude: ',
-                                style: TextStyle(
-                                  fontSize: SizeConfig.fontsize * 2,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                )),
-                            Text('Longitude: ',
-                                style: TextStyle(
-                                  fontSize: SizeConfig.fontsize * 2,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                )),
+                            Row(children: [
+                              Text('Latitude: ',
+                                  style: TextStyle(
+                                    fontSize: SizeConfig.fontsize * 2,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                  )),
+                              DataText(
+                                  socket: socket,
+                                  serverPath:
+                                      "Vehicle.CurrentLocation.Latitude"),
+                            ]),
+                            Row(children: [
+                              Text('Longitude: ',
+                                  style: TextStyle(
+                                    fontSize: SizeConfig.fontsize * 2,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                  )),
+                              DataText(
+                                  socket: socket,
+                                  serverPath:
+                                      "Vehicle.CurrentLocation.Longitude"),
+                            ]),
                           ],
                         )
                       ])),

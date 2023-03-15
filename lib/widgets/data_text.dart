@@ -25,6 +25,29 @@ class DataText extends ConsumerWidget {
 
     if (this.serverPath == "Vehicle.Speed") {
       this.returnVal = vehicledata.speed.toString();
+    } else if (this.serverPath == "Vehicle.Powertrain.CombustionEngine.Speed") {
+      this.returnVal = vehicledata.rpm.toString();
+    } else if (this.serverPath == "Vehicle.Powertrain.CombustionEngine.Power") {
+      this.returnVal = vehicledata.power.toString();
+    } else if (this.serverPath ==
+        "Vehicle.Powertrain.CombustionEngine.Torque") {
+      this.returnVal = vehicledata.torque.toString();
+    } else if (this.serverPath == "Vehicle.Powertrain.CombustionEngine.ECT") {
+      this.returnVal = vehicledata.ect.toString();
+    } else if (this.serverPath ==
+        "Vehicle.Powertrain.Transmission.CurrentGear") {
+      this.returnVal = vehicledata.gear.toString();
+    } else if (this.serverPath == "Vehicle.CurrentLocation.Longitude") {
+      this.returnVal = vehicledata.lon.toString();
+    } else if (this.serverPath == "Vehicle.CurrentLocation.Latitude") {
+      this.returnVal = vehicledata.lat.toString();
+    } else if (this.serverPath ==
+        "Vehicle.Powertrain.FuelSystem.InstantConsumption") {
+      this.returnVal = vehicledata.fuelconsumption.toString();
+    } else if (this.serverPath == "Vehicle.Powertrain.FuelSystem.Level") {
+      this.returnVal = vehicledata.fuellevel.toString();
+    } else if (this.serverPath == "Vehicle.Powertrain.CombustionEngine.EOT") {
+      this.returnVal = vehicledata.eot.toString();
     }
 
     return Text(returnVal,

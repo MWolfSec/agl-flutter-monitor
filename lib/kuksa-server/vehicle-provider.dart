@@ -19,6 +19,16 @@ class VehicleSignal extends StateNotifier<vehicle> {
     isAutoActive: false,
     isFreshAirCirculateActive: false,
     speed: 0.0,
+    rpm: 0,
+    power: 0,
+    torque: 0,
+    ect: 0,
+    eot: 0,
+    fuelconsumption: 0.0,
+    fuellevel: 0,
+    gear: 1,
+    lat: 0.0,
+    lon: 0.0,
   );
   VehicleSignal() : super(intial_value);
 
@@ -32,6 +42,17 @@ class VehicleSignal extends StateNotifier<vehicle> {
     bool? isRecirculationActive,
     bool? isAutoActive,
     bool? isFreshAirCirculateActive,
+    double? speed,
+    int? rpm,
+    int? power,
+    int? torque,
+    int? ect,
+    int? eot,
+    int? fuellevel,
+    double? fuelconsumption,
+    int? gear,
+    double? lat,
+    double? lon,
   }) {
     state = state.copywith(
       isAcActive: isAcActive,
@@ -43,6 +64,17 @@ class VehicleSignal extends StateNotifier<vehicle> {
       isRecirculationActive: isRecirculationActive,
       isAutoActive: isAutoActive,
       isFreshAirCirculateActive: isFreshAirCirculateActive,
+      speed: speed,
+      rpm: rpm,
+      power: power,
+      torque: torque,
+      ect: ect,
+      eot: eot,
+      fuelconsumption: fuelconsumption,
+      fuellevel: fuellevel,
+      gear: gear,
+      lat: lat,
+      lon: lon,
     );
   }
 }
