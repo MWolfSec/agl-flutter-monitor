@@ -1,0 +1,8 @@
+- Display CAN Messages
+- Buttons for storing the Log (start / stop)
+- limit boost Control
+- send can messages for fan speed periodically
+- connection with log service 
+- Parameter integrieren in ui (speed, rpm, boost load, -> custom field for vehicle overall state)
+  - update values from VSS Server automatically in gui
+- For CTF - field with flag content display only on overclock 

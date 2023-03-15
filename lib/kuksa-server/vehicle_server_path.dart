@@ -1,12 +1,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
-
 class VSPath {
-
-
   static const String vehicleTrunkLocked = "Vehicle.Body.Trunk.IsLocked";
   static const String vehicleTrunkOpen = "Vehicle.Body.Trunk.IsOpen";
-
 
   static const String vehicleAmbientAirTemperature =
       "Vehicle.AmbientAirTemperature";
@@ -33,4 +29,6 @@ class VSPath {
       "Vehicle.Cabin.HVAC.AmbientAirTemperature";
   static const String vehicleFrontLeftAc =
       "Vehicle.Cabin.HVAC.Station.Row1.Left.AirDistribution";
+
+  static const String vehicleSpeed = "Vehicle.Speed";
 }

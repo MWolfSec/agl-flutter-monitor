@@ -17,7 +17,8 @@ class VehicleSignal extends StateNotifier<vehicle> {
     isRearDefrosterActive: false,
     isRecirculationActive: false,
     isAutoActive: false,
-    isFreshAirCirculateActive : false,
+    isFreshAirCirculateActive: false,
+    speed: 0.0,
   );
   VehicleSignal() : super(intial_value);
 
@@ -40,8 +41,8 @@ class VehicleSignal extends StateNotifier<vehicle> {
       isFrontDefrosterActive: isFrontDefrosterActive,
       isRearDefrosterActive: isRearDefrosterActive,
       isRecirculationActive: isRecirculationActive,
-      isAutoActive : isAutoActive,
-      isFreshAirCirculateActive : isFreshAirCirculateActive,
+      isAutoActive: isAutoActive,
+      isFreshAirCirculateActive: isFreshAirCirculateActive,
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_monitor/Buttons/fresh_air.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:flutter_monitor/Buttons/AC.dart';
+import 'package:flutter_monitor/Buttons/LogCanTraffic.dart';
 import 'package:flutter_monitor/Buttons/ac_on_face.dart';
 import 'package:flutter_monitor/Buttons/ac_on_foot.dart';
 import 'package:flutter_monitor/Buttons/defrost_recirculate.dart';
@@ -14,6 +15,8 @@ import 'package:flutter_monitor/size.dart';
 import 'Buttons/auto.dart';
 import 'widgets/left_climate.dart';
 import 'widgets/right_climate.dart';
+
+import 'widgets/data_text.dart';
 import 'widgets/slider.dart';
 
 class HomePage extends StatelessWidget {
@@ -104,6 +107,103 @@ class HomePage extends StatelessWidget {
                           )),
                     ],
                   )),
+              Flexible(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      Text('Vehicle Status',
+                          style: TextStyle(
+                            fontSize: SizeConfig.fontsize * 4,
+                            fontWeight: FontWeight.w700,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          )),
+                    ],
+                  )),
+              Flexible(
+                  flex: 1,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Column(children: [
+                          Row(children: [
+                            Text('Speed: ',
+                                style: TextStyle(
+                                  fontSize: SizeConfig.fontsize * 2,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                )),
+                            DataText(
+                                socket: socket, serverPath: 'Vehicle.Speed'),
+                          ]),
+                          Row(children: [
+                            Text('Engine RPM: ',
+                                style: TextStyle(
+                                  fontSize: SizeConfig.fontsize * 2,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                )),
+                          ])
+                        ]),
+                        Column(
+                          children: [
+                            Text('Engine Power: ',
+                                style: TextStyle(
+                                  fontSize: SizeConfig.fontsize * 2,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                )),
+                            Text('Engine Torque: ',
+                                style: TextStyle(
+                                  fontSize: SizeConfig.fontsize * 2,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                )),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text('Fuel Level: ',
+                                style: TextStyle(
+                                  fontSize: SizeConfig.fontsize * 2,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                )),
+                            Text('Fuel Consumption: ',
+                                style: TextStyle(
+                                  fontSize: SizeConfig.fontsize * 2,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                )),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Text('Latitude: ',
+                                style: TextStyle(
+                                  fontSize: SizeConfig.fontsize * 2,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                )),
+                            Text('Longitude: ',
+                                style: TextStyle(
+                                  fontSize: SizeConfig.fontsize * 2,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color.fromARGB(255, 255, 255, 255),
+                                )),
+                          ],
+                        )
+                      ])),
+              Flexible(
+                flex: 1,
+                child: Row(
+                  children: [
+                    LogCanTraffic(socket: socket, serverPath: ''),
+                    SizedBox(
+                      height: SizeConfig.safeBlockVertical,
+                    ),
+                  ],
+                ),
+              ),
               Flexible(
                 flex: 1,
                 child: Row(

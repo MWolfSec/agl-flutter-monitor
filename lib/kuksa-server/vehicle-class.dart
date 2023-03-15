@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
+import 'dart:ffi';
+
 class vehicle {
   late bool isAcActive;
   late bool isFrontDefrosterActive;
@@ -11,6 +13,8 @@ class vehicle {
   late bool isAutoActive;
   late bool isFreshAirCirculateActive;
 
+  late double speed;
+
   vehicle({
     required this.isAcActive,
     required this.isAcDirectionDown,
@@ -21,6 +25,7 @@ class vehicle {
     required this.isRecirculationActive,
     required this.isAutoActive,
     required this.isFreshAirCirculateActive,
+    required this.speed,
   });
 
   vehicle copywith({
@@ -33,6 +38,7 @@ class vehicle {
     bool? isRecirculationActive,
     bool? isAutoActive,
     bool? isFreshAirCirculateActive,
+    double? speed,
   }) {
     return vehicle(
       isAcActive: isAcActive ?? this.isAcActive,
@@ -46,8 +52,9 @@ class vehicle {
       isRecirculationActive:
           isRecirculationActive ?? this.isRecirculationActive,
       isAutoActive: isAutoActive ?? this.isAutoActive,
-      isFreshAirCirculateActive: isFreshAirCirculateActive ?? this.isFreshAirCirculateActive,
-
+      isFreshAirCirculateActive:
+          isFreshAirCirculateActive ?? this.isFreshAirCirculateActive,
+      speed: speed ?? this.speed,
     );
   }
 }
