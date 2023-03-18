@@ -3,18 +3,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_monitor/Buttons/fresh_air.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:flutter_monitor/Buttons/AC.dart';
 import 'package:flutter_monitor/Buttons/LogCanTraffic.dart';
-import 'package:flutter_monitor/Buttons/ac_on_face.dart';
-import 'package:flutter_monitor/Buttons/ac_on_foot.dart';
-import 'package:flutter_monitor/Buttons/defrost_recirculate.dart';
 import 'package:flutter_monitor/size.dart';
-
-import 'Buttons/auto.dart';
-import 'widgets/left_climate.dart';
-import 'widgets/right_climate.dart';
 
 import 'widgets/data_text.dart';
 import 'widgets/slider.dart';
@@ -226,6 +217,18 @@ class HomePage extends StatelessWidget {
                                   serverPath:
                                       "Vehicle.Powertrain.FuelSystem.InstantConsumption"),
                             ]),
+                            Row(children: [
+                              Text('Coolant Temp: ',
+                                  style: TextStyle(
+                                    fontSize: SizeConfig.fontsize * 2,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                  )),
+                              DataText(
+                                  socket: socket,
+                                  serverPath:
+                                      "Vehicle.Powertrain.CombustionEngine.ECT"),
+                            ]),
                           ],
                         ),
                         Column(
@@ -285,6 +288,36 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               Flexible(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      Column(children: [
+                        Row(children: [
+                          Text('BoostLevel: ',
+                              style: TextStyle(
+                                fontSize: SizeConfig.fontsize * 2,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromARGB(255, 255, 255, 255),
+                              )),
+                          DataText(
+                              socket: socket,
+                              serverPath: 'Vehicle.TurboCharger.BoostLevel'),
+                        ]),
+                        Row(children: [
+                          Text('BoostPressure: ',
+                              style: TextStyle(
+                                fontSize: SizeConfig.fontsize * 2,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromARGB(255, 255, 255, 255),
+                              )),
+                          DataText(
+                              socket: socket,
+                              serverPath: 'Vehicle.TurboCharger.BoostPressure'),
+                        ]),
+                      ]),
+                    ],
+                  )),
+              Flexible(
                   flex: 2,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -303,75 +336,6 @@ class HomePage extends StatelessWidget {
                       ),
                     ],
                   )),
-              /* Flexible(
-                  flex: 3,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        children: [
-                          AC(
-                              socket: socket,
-                              serverPath:
-                                  'Vehicle.Cabin.HVAC.IsAirConditioningActive'),
-                          SizedBox(
-                            height: SizeConfig.safeBlockVertical,
-                          ),
-                          AcOnFoot(
-                            img: 'images/ac_on_foot.svg',
-                            socket: socket,
-                          ),
-                          SizedBox(
-                            height: SizeConfig.safeBlockVertical,
-                          ),
-                          AcOnFace(
-                            img: 'images/ac_on_face.svg',
-                            socket: socket,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Auto(serverPath: '', socket: socket),
-                          SizedBox(
-                            width: SizeConfig.safeBlockHorizontal,
-                          ),
-                          FreshAir(
-                              serverPath: '',
-                              socket: socket,
-                              img: 'images/wind_in.svg'),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          CustomButton(
-                              serverPath:
-                                  'Vehicle.Cabin.HVAC.IsRecirculationActive',
-                              socket: socket,
-                              img: 'images/in_out.svg',
-                              type: 'Recirculation'),
-                          SizedBox(
-                            height: SizeConfig.safeBlockVertical,
-                          ),
-                          CustomButton(
-                              serverPath:
-                                  'Vehicle.Cabin.HVAC.IsRearDefrosterActive',
-                              socket: socket,
-                              img: 'images/rear_ws.svg',
-                              type: 'Rear_defrost'),
-                          SizedBox(
-                            height: SizeConfig.safeBlockVertical,
-                          ),
-                          CustomButton(
-                              serverPath:
-                                  'Vehicle.Cabin.HVAC.IsFrontDefrosterActive',
-                              socket: socket,
-                              img: 'images/wind_shield.svg',
-                              type: 'Front_defrost'),
-                        ],
-                      ),
-                    ],
-                  )), */
             ],
           ),
         ));

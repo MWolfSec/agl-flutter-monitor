@@ -9,15 +9,6 @@ final vehicleProvider = StateNotifierProvider<VehicleSignal, vehicle>(
 
 class VehicleSignal extends StateNotifier<vehicle> {
   static vehicle intial_value = vehicle(
-    isAcActive: false,
-    isAcDirectionDown: false,
-    isAcDirectionMiddle: false,
-    isAcDirectionUp: false,
-    isFrontDefrosterActive: false,
-    isRearDefrosterActive: false,
-    isRecirculationActive: false,
-    isAutoActive: false,
-    isFreshAirCirculateActive: false,
     speed: 0.0,
     rpm: 0,
     power: 0,
@@ -29,19 +20,12 @@ class VehicleSignal extends StateNotifier<vehicle> {
     gear: 1,
     lat: 0.0,
     lon: 0.0,
+    boostPressure: 0.0,
+    boostLevel: 0,
   );
   VehicleSignal() : super(intial_value);
 
   void update({
-    bool? isAcActive,
-    bool? isAcDirectionDown,
-    bool? isAcDirectionUp,
-    bool? isAcDirectionMiddle,
-    bool? isFrontDefrosterActive,
-    bool? isRearDefrosterActive,
-    bool? isRecirculationActive,
-    bool? isAutoActive,
-    bool? isFreshAirCirculateActive,
     double? speed,
     int? rpm,
     int? power,
@@ -53,17 +37,10 @@ class VehicleSignal extends StateNotifier<vehicle> {
     int? gear,
     double? lat,
     double? lon,
+    double? boostPressure,
+    int? boostLevel,
   }) {
     state = state.copywith(
-      isAcActive: isAcActive,
-      isAcDirectionDown: isAcDirectionDown,
-      isAcDirectionMiddle: isAcDirectionMiddle,
-      isAcDirectionUp: isAcDirectionUp,
-      isFrontDefrosterActive: isFrontDefrosterActive,
-      isRearDefrosterActive: isRearDefrosterActive,
-      isRecirculationActive: isRecirculationActive,
-      isAutoActive: isAutoActive,
-      isFreshAirCirculateActive: isFreshAirCirculateActive,
       speed: speed,
       rpm: rpm,
       power: power,
@@ -75,6 +52,8 @@ class VehicleSignal extends StateNotifier<vehicle> {
       gear: gear,
       lat: lat,
       lon: lon,
+      boostLevel: boostLevel,
+      boostPressure: boostPressure,
     );
   }
 }

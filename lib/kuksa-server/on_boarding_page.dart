@@ -30,13 +30,17 @@ class _OnBoardingPageState extends ConsumerState<OnBoardingPage> {
     _socket = widget.socket;
     VISS.init(widget.socket, ref);
     _timer = Timer.periodic(const Duration(seconds: 2), (timer) {
+      //print("Timer widget refresh");
       if (widget.socket.readyState == 3) {
         ref.refresh(sockConnectprovider(widget.client));
+        print("ref: $ref");
       }
     });
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       widget.socket.listen(
-        (data) {},
+        (data) {
+          VISS.parseData(ref, data);
+        },
         onError: (e, stk) {
           print(e.toString());
           ref.refresh(sockConnectprovider(widget.client));

@@ -4,8 +4,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_monitor/kuksa-server/vehicle-provider.dart';
-import 'package:flutter_monitor/kuksa-server/vehicle_methods.dart';
 
 import '../size.dart';
 
@@ -25,7 +23,7 @@ class LogCanTraffic extends ConsumerStatefulWidget {
 class _LogState extends ConsumerState<LogCanTraffic>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late bool isAcActive;
+  //late bool isAcActive;
   late Animation<Color?> _colorAnimation;
 
   @override
@@ -45,10 +43,10 @@ class _LogState extends ConsumerState<LogCanTraffic>
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        VISS.set(widget.socket, ref, widget.serverPath, isAcActive.toString());
+        //VISS.set(widget.socket, ref, widget.serverPath, isAcActive.toString());
       }
       if (status == AnimationStatus.dismissed) {
-        VISS.set(widget.socket, ref, widget.serverPath, isAcActive.toString());
+        //VISS.set(widget.socket, ref, widget.serverPath, isAcActive.toString());
       }
     });
   }
@@ -62,7 +60,6 @@ class _LogState extends ConsumerState<LogCanTraffic>
 
   @override
   Widget build(BuildContext context) {
-    isAcActive = ref.watch(vehicleProvider).isAcActive;
     return AnimatedBuilder(
         animation: _controller,
         builder: (BuildContext context, _) {
@@ -73,12 +70,13 @@ class _LogState extends ConsumerState<LogCanTraffic>
                 maxWidth: SizeConfig.screenWidth * 0.15,
               ),
               decoration: BoxDecoration(
-                gradient: isAcActive
+                gradient: null,
+                /* isAcActive
                     ? RadialGradient(
                         colors: [Colors.black, Colors.lightBlue],
                         radius: 2,
                       )
-                    : null,
+                    : null,*/
                 border: Border.all(
                   color: Colors.white,
                   width: 2,
@@ -107,10 +105,10 @@ class _LogState extends ConsumerState<LogCanTraffic>
               ),
             ),
             onTap: () {
-              isAcActive ? _controller.reverse() : _controller.forward();
+              /*isAcActive ? _controller.reverse() : _controller.forward();
               ref
                   .read(vehicleProvider.notifier)
-                  .update(isAcActive: !isAcActive);
+                  .update(isAcActive: !isAcActive);*/
             },
           );
         });

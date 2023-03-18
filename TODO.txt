@@ -3,6 +3,5 @@
 - limit boost Control
 - send can messages for fan speed periodically
 - connection with log service 
-- Parameter integrieren in ui (speed, rpm, boost load, -> custom field for vehicle overall state)
-  - update values from VSS Server automatically in gui
+- include boost control into vss server
 - For CTF - field with flag content display only on overclock 

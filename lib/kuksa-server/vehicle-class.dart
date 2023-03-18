@@ -3,16 +3,6 @@
 import 'dart:ffi';
 
 class vehicle {
-  late bool isAcActive;
-  late bool isFrontDefrosterActive;
-  late bool isRearDefrosterActive;
-  late bool isAcDirectionUp;
-  late bool isAcDirectionDown;
-  late bool isAcDirectionMiddle;
-  late bool isRecirculationActive;
-  late bool isAutoActive;
-  late bool isFreshAirCirculateActive;
-
   late double speed;
   late int rpm;
   late int power;
@@ -24,17 +14,10 @@ class vehicle {
   late int gear;
   late double fuelconsumption;
   late int fuellevel;
+  late double boostPressure;
+  late int boostLevel;
 
   vehicle({
-    required this.isAcActive,
-    required this.isAcDirectionDown,
-    required this.isAcDirectionMiddle,
-    required this.isAcDirectionUp,
-    required this.isFrontDefrosterActive,
-    required this.isRearDefrosterActive,
-    required this.isRecirculationActive,
-    required this.isAutoActive,
-    required this.isFreshAirCirculateActive,
     required this.speed,
     required this.rpm,
     required this.power,
@@ -46,18 +29,11 @@ class vehicle {
     required this.gear,
     required this.fuelconsumption,
     required this.fuellevel,
+    required this.boostLevel,
+    required this.boostPressure,
   });
 
   vehicle copywith({
-    bool? isAcActive,
-    bool? isAcDirectionDown,
-    bool? isAcDirectionMiddle,
-    bool? isAcDirectionUp,
-    bool? isFrontDefrosterActive,
-    bool? isRearDefrosterActive,
-    bool? isRecirculationActive,
-    bool? isAutoActive,
-    bool? isFreshAirCirculateActive,
     double? speed,
     int? rpm,
     int? power,
@@ -69,21 +45,10 @@ class vehicle {
     int? gear,
     double? fuelconsumption,
     int? fuellevel,
+    double? boostPressure,
+    int? boostLevel,
   }) {
     return vehicle(
-      isAcActive: isAcActive ?? this.isAcActive,
-      isAcDirectionDown: isAcDirectionDown ?? this.isAcDirectionDown,
-      isAcDirectionMiddle: isAcDirectionMiddle ?? this.isAcDirectionMiddle,
-      isAcDirectionUp: isAcDirectionUp ?? this.isAcDirectionUp,
-      isFrontDefrosterActive:
-          isFrontDefrosterActive ?? this.isFrontDefrosterActive,
-      isRearDefrosterActive:
-          isRearDefrosterActive ?? this.isRearDefrosterActive,
-      isRecirculationActive:
-          isRecirculationActive ?? this.isRecirculationActive,
-      isAutoActive: isAutoActive ?? this.isAutoActive,
-      isFreshAirCirculateActive:
-          isFreshAirCirculateActive ?? this.isFreshAirCirculateActive,
       speed: speed ?? this.speed,
       rpm: rpm ?? this.rpm,
       power: power ?? this.power,
@@ -95,6 +60,8 @@ class vehicle {
       gear: gear ?? this.gear,
       fuelconsumption: fuelconsumption ?? this.fuelconsumption,
       fuellevel: fuellevel ?? this.fuellevel,
+      boostLevel: boostLevel ?? this.boostLevel,
+      boostPressure: boostPressure ?? this.boostPressure,
     );
   }
 }
