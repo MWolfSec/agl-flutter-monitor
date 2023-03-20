@@ -1,0 +1,18 @@
+Vehicle:
+   type: branch
+
+Vehicle.TurboCharger:
+  type: branch
+  description: Turbocharger
+
+Vehicle.TurboCharger.BoostLevel:
+  datatype: int16
+  type: sensor
+  unit: percent
+  description: Level of Boost in Percent
+
+Vehicle.TurboCharger.BoostPressure:
+  datatype: float
+  type: sensor
+  unit: mbar
+  description: Boost Pressure in Millibar

@@ -21,6 +21,7 @@
 
 import kuksa_viss_client
 import time
+import os
 
 
 class VSS:
@@ -67,15 +68,17 @@ class VSS:
         self.vehicleBoostLevel = "Vehicle.TurboCharger.BoostLevel"
         self.vehicleBoostPressure = "Vehicle.TurboCharger.BoostPressure"
 
+        
 
     def setInitialValues(self):
         
         print("extending tree")
-        #self.client.updateVssTree("/usr/sbin/turbo.json")
-        
+        filepath = '/home/agl-driver/extend_vss.json'
+        if(os.path.isfile(filepath)):
+            print("file exists!")
+        result = self.client.updateVSSTree(filepath,timeout=15)
+        print(result)
         print("Setting values")
-
-
 
         self.client.setValue(self.speed, '50.0')
         self.client.setValue(self.engineRPM, '2200')
@@ -113,8 +116,8 @@ class VSS:
         # Dont Show the map
         self.client.setValue(self.steeringInfo, "false")
         
-        #self.client.setValue(self.vehicleBoostLevel,"30")
-        #self.client.setValue(self.vehicleBoostPressure, "1.8")
+        self.client.setValue(self.vehicleBoostLevel,"30")
+        self.client.setValue(self.vehicleBoostPressure, "800.0")
         print("All value set succesfully")
 
 
@@ -122,8 +125,10 @@ def main():
     config = {"ip": "localhost", "port": 8090, "insecure": False}
     client = kuksa_viss_client.KuksaClientThread(config)
     client.start()
+    #token_file = open(
+    #"/usr/lib/python3.10/site-packages/kuksa_certificates/jwt/all-read-write.json.token", "r")
     token_file = open(
-    "/usr/lib/python3.10/site-packages/kuksa_certificates/jwt/all-read-write.json.token", "r")
+    "/usr/lib/python3.10/site-packages/kuksa_certificates/jwt/super-admin.json.token", "r")
     token = token_file.read()
     client.authorize(token, timeout=2)
 

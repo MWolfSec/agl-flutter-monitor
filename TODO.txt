@@ -1,7 +1,5 @@
 - Display CAN Messages
 - Buttons for storing the Log (start / stop)
-- limit boost Control
 - send can messages for fan speed periodically
 - connection with log service 
-- include boost control into vss server
 - For CTF - field with flag content display only on overclock 

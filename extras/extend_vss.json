@@ -1,0 +1,26 @@
+{
+    "Vehicle": {
+      "children": {
+        "TurboCharger": {
+          "children": {
+            "BoostPressure": {
+              "datatype": "float",
+              "description": "Boost Pressure in Millibar",
+              "type": "sensor",
+              "unit": "mbar"
+            },
+            "BoostLevel": {
+              "datatype": "int16",
+              "description": "Level of Boost in Percent",
+              "type": "sensor",
+              "unit": "percent"
+            }
+          },
+          "description": "Turbocharger",
+          "type": "branch"
+        }
+      },
+      "description": null,
+      "type": "branch"
+    }
+  } 

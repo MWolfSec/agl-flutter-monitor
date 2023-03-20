@@ -3,13 +3,15 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_monitor/provider.dart';
 
 import '../kuksa-server/vehicle_methods.dart';
 import '../size.dart';
 
-class SliderControl extends ConsumerWidget {
+class SliderControl extends HookConsumerWidget {
   WebSocket socket;
   SliderControl({Key? key, required this.socket}) : super(key: key);
 
@@ -19,22 +21,13 @@ class SliderControl extends ConsumerWidget {
       height: SizeConfig.safeBlockVertical * 2,
       width: SizeConfig.screenWidth * 0.5,
       child: Slider(
-        value: ref.watch(fanSpeedProvider).toDouble(),
+        value: ref.watch(boostLevelProvider).toDouble(),
         onChanged: (value) {
-          ref.read(fanSpeedProvider.notifier).update(value.toInt());
-          VISS.set(socket, ref, 'Vehicle.Cabin.HVAC.Station.Row1.Left.FanSpeed',
-              value.toInt().toString());
-          VISS.set(
-              socket,
-              ref,
-              'Vehicle.Cabin.HVAC.Station.Row1.Right.FanSpeed',
-              value.toInt().toString());
-          VISS.set(socket, ref, 'Vehicle.Cabin.HVAC.Station.Row2.Left.FanSpeed',
-              value.toInt().toString());
-          VISS.set(
-              socket,
-              ref,
-              'Vehicle.Cabin.HVAC.Station.Row2.Right.FanSpeed',
+          ref.read(boostLevelProvider.notifier).update(value.toInt());
+          if (value > 50) {
+            value = 50;
+          }
+          VISS.set(socket, ref, 'Vehicle.TurboCharger.BoostLevel',
               value.toInt().toString());
         },
         min: 0,
@@ -42,7 +35,7 @@ class SliderControl extends ConsumerWidget {
         activeColor: Colors.green,
         inactiveColor: Colors.white70,
         thumbColor: Colors.grey,
-        label: 'Fan Speed',
+        label: 'Boost Level',
       ),
     );
   }

@@ -58,8 +58,14 @@ class DataText extends HookConsumerWidget {
       case "Vehicle.Powertrain.CombustionEngine.EOT":
         this.returnVal = vehicledata.eot.toString();
         break;
+      case "Vehicle.TurboCharger.BoostLevel":
+        this.returnVal = vehicledata.boostLevel.toString();
+        break;
+      case "Vehicle.TurboCharger.BoostPressure":
+        this.returnVal = vehicledata.boostPressure.toString();
+        break;
       default:
-        print("$serverPath Not Available yet!");
+        print("$serverPath Not Available yet in data_text!");
         this.returnVal = "not found";
     }
 

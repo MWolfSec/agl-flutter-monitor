@@ -2,36 +2,15 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final LeftClimateTempProvider = StateNotifierProvider<LeftClimateTemp, int>(
-  (ref) => LeftClimateTemp(),
-);
+final boostLevelProvider =
+    StateNotifierProvider<boostslider, int>((ref) => boostslider());
 
-class LeftClimateTemp extends StateNotifier<int> {
-  LeftClimateTemp() : super(22);
-
-  Future<void> update(value) async {
-    state = value;
-  }
-}
-
-final RightClimateTempProvider = StateNotifierProvider<RightClimateTemp, int>(
-  (ref) => RightClimateTemp(),
-);
-
-class RightClimateTemp extends StateNotifier<int> {
-  RightClimateTemp() : super(22);
-
-  Future<void> update(value) async {
-    state = value;
-  }
-}
-
-final fanSpeedProvider =
-    StateNotifierProvider<fanslider, int>((ref) => fanslider());
-
-class fanslider extends StateNotifier<int> {
-  fanslider() : super(30);
+class boostslider extends StateNotifier<int> {
+  boostslider() : super(30);
   void update(value) {
+    if (value > 50) {
+      value = 50;
+    }
     state = value;
   }
 }
