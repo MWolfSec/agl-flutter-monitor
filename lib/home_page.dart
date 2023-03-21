@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_monitor/widgets/error_msg.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:flutter_monitor/Buttons/LogCanTraffic.dart';
 import 'package:flutter_monitor/size.dart';
@@ -313,6 +314,11 @@ class HomePage extends StatelessWidget {
                           DataText(
                               socket: socket,
                               serverPath: 'Vehicle.TurboCharger.BoostPressure'),
+                        ]),
+                        Row(children: [
+                          ErrorMsg(
+                            socket: socket,
+                          )
                         ]),
                       ]),
                     ],
