@@ -30,7 +30,7 @@ class SizeConfig {
         _mediaQueryData.padding.top + _mediaQueryData.padding.bottom;
     safeBlockHorizontal = (screenWidth - _safeAreaHorizontal) / 100;
     safeBlockVertical = (screenHeight - _safeAreaVertical) / 100;
-    fontsize = screenHeight * screenWidth * 0.01 * 0.01 * 0.1;
+    fontsize = screenHeight * screenWidth * 0.01 * 0.01 * 0.05;
     // fontsize= blockSizeVertical*2;
     normalfont = TextStyle(
       fontSize: fontsize,

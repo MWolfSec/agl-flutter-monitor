@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
                       Text(
                           'Lorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\n',
                           style: TextStyle(
-                            fontSize: SizeConfig.fontsize * 2,
+                            fontSize: SizeConfig.fontsize,
                             fontWeight: FontWeight.w400,
                             color: Color.fromARGB(255, 255, 255, 255),
                           )),
