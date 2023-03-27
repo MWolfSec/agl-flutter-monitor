@@ -1,4 +1,4 @@
-- Display CAN Messages
+
 - Buttons for storing the Log (start / stop)
 - connection with log service 
 - logging functionality

@@ -54,13 +54,6 @@ class MotorControllerProvider extends ChangeNotifier {
   }
 }
 
-/// First Message of Kelly CAN protocol
-const _CAN_MESSAGE1 = 0x8CF11E05;
-
-// Second Message of Kelly CAN protocol
-const _CAN_MESSAGE2 = 0x8CF11F05;
-// const _statusOfSwitchSignalsIndex = 5;
-
 // Update frequency: Per 50ms x2 -> Wait 2 seconds
 const _FAILED_READS_LIMIT = (20 * 2) * 2;
 
@@ -99,11 +92,14 @@ class KellyCanData extends ChangeNotifier {
       if (failedReading) {
         _failedReads += 1;
         if (_failedReads >= _FAILED_READS_LIMIT) {
-          throw SocketException("Unable to read from can bus.");
+          //throw SocketException("Unable to read from can bus.");
+          print("unable to read from can!");
         }
       } else {
         if (_failedReads > 0) _failedReads = 0;
-        cframes = [];
+        if (cframes.length > 9) {
+          cframes = [];
+        }
         cframes.addAll(frames);
 
         notifyListeners();
@@ -111,14 +107,6 @@ class KellyCanData extends ChangeNotifier {
     } on SocketException {
       //print("socket exception");
     }
-  }
-
-  void _updateFromMsg1(CanFrame frame) {
-    final data = frame.data;
-  }
-
-  void _updateFromMsg2(CanFrame frame) {
-    final data = frame.data;
   }
 
   /// Converts to bytes to one integer.
@@ -141,15 +129,6 @@ void readCanFrames(SendPort sendPort) async {
   Timer.periodic(_CAN_UPDATE_DURATION, (_) {
     List<CanFrame> frames = [];
     try {
-      frames.add(can.read());
-      frames.add(can.read());
-      frames.add(can.read());
-      frames.add(can.read());
-      frames.add(can.read());
-      frames.add(can.read());
-      frames.add(can.read());
-      frames.add(can.read());
-      frames.add(can.read());
       frames.add(can.read());
     } catch (e) {
       //print("Failed reading CAN frames.");
