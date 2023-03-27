@@ -21,7 +21,7 @@ class _GetConfigState extends ConsumerState<GetConfig> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       final configStateProvider = ref.read(ConfigStateprovider.notifier);
       //for deployment on AGL use /etc/xdg path
-      String configFilePath = '/etc/xdg/AGL/Monitor_config.yaml';
+      String configFilePath = '/etc/xdg/AGL/MONITOR_config.yaml';
       //String configFilePath = 'extras/Monitor_config.yaml';
 
       final configFile = File(configFilePath);
