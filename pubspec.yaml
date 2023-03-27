@@ -36,6 +36,10 @@ dependencies:
   flutter_hooks: ^0.18.5
   hooks_riverpod: ^1.0.4
   flutter_riverpod: ^1.0.3
+
+  linux_can:
+    git: https://github.com/matzesoft/linux_can.git
+
   yaml: ^3.1.1
 
 

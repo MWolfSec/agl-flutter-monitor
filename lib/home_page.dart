@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_monitor/widgets/can_viewer.dart';
 import 'package:flutter_monitor/widgets/error_msg.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:flutter_monitor/Buttons/LogCanTraffic.dart';
@@ -90,13 +91,7 @@ class HomePage extends StatelessWidget {
                   flex: 4,
                   child: Row(
                     children: [
-                      Text(
-                          'Lorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\nLorem Ipsum Dolor sit amet.\n',
-                          style: TextStyle(
-                            fontSize: SizeConfig.fontsize,
-                            fontWeight: FontWeight.w400,
-                            color: Color.fromARGB(255, 255, 255, 255),
-                          )),
+                      CanViewer(),
                     ],
                   )),
               Flexible(
