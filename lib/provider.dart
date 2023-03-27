@@ -109,7 +109,7 @@ class KellyCanData extends ChangeNotifier {
         notifyListeners();
       }
     } on SocketException {
-      print("socket exception");
+      //print("socket exception");
     }
   }
 
@@ -152,7 +152,7 @@ void readCanFrames(SendPort sendPort) async {
       frames.add(can.read());
       frames.add(can.read());
     } catch (e) {
-      print("Failed reading CAN frames.");
+      //print("Failed reading CAN frames.");
     }
     sendPort.send(frames);
   });

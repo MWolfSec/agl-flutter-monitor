@@ -21,7 +21,7 @@ class CanViewer extends HookConsumerWidget {
     return Text(
       output,
       style: TextStyle(
-        fontSize: SizeConfig.fontsize,
+        fontSize: SizeConfig.fontsize * 2,
         fontWeight: FontWeight.w400,
         color: Color.fromARGB(255, 255, 255, 255),
       ),
