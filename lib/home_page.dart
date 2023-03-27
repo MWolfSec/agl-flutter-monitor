@@ -90,9 +90,7 @@ class HomePage extends StatelessWidget {
               Flexible(
                   flex: 4,
                   child: Row(
-                    children: [
-                      CanViewer(),
-                    ],
+                    children: [],
                   )),
               Flexible(
                   flex: 1,

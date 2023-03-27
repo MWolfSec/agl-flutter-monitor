@@ -22,7 +22,7 @@ class _GetConfigState extends ConsumerState<GetConfig> {
       final configStateProvider = ref.read(ConfigStateprovider.notifier);
       //for deployment on AGL use /etc/xdg path
       String configFilePath = '/etc/xdg/AGL/MONITOR_config.yaml';
-      //String configFilePath = 'extras/Monitor_config.yaml';
+      //String configFilePath = 'extras/MONITOR_config.yaml';
 
       final configFile = File(configFilePath);
       configFile.readAsString().then((content) {
