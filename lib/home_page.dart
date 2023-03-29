@@ -90,7 +90,12 @@ class HomePage extends StatelessWidget {
               Flexible(
                   flex: 4,
                   child: Row(
-                    children: [],
+                    children: [
+                      Container(
+                        height: 200,
+                        child: Column(children: [CanViewer()]), // your column
+                      ),
+                    ],
                   )),
               Flexible(
                   flex: 1,
