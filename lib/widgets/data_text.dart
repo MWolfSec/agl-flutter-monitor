@@ -69,11 +69,14 @@ class DataText extends HookConsumerWidget {
         this.returnVal = "not found";
     }
 
-    return Text(returnVal,
-        style: TextStyle(
-          fontSize: SizeConfig.fontsize * 2,
-          fontWeight: FontWeight.w400,
-          color: Color.fromARGB(255, 255, 255, 255),
-        ));
+    return Text(
+      returnVal,
+      style: TextStyle(
+        fontSize: SizeConfig.fontsize * 2,
+        fontWeight: FontWeight.w400,
+        color: Color.fromARGB(255, 255, 255, 255),
+      ),
+      textAlign: TextAlign.left,
+    );
   }
 }

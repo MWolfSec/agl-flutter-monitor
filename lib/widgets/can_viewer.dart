@@ -13,15 +13,11 @@ class CanViewer extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    String output = "";
-    List<CanFrame> messages = ref.watch(canTrafficProvider).getFrames();
-    messages.forEach((element) {
-      output += (element.id.toString() + "#" + element.data.toString() + "\n");
-    });
+    String output = ref.watch(canTrafficProvider).getFrameOutput();
     return Text(
       output,
       style: TextStyle(
-        fontSize: SizeConfig.fontsize * 2,
+        fontSize: SizeConfig.fontsize * 2.5,
         fontWeight: FontWeight.w400,
         color: Color.fromARGB(255, 255, 255, 255),
       ),

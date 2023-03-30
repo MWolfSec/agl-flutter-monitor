@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -45,6 +46,10 @@ class MotorControllerProvider extends ChangeNotifier {
     return _canData.getFrames();
   }
 
+  String getFrameOutput() {
+    return _canData.getFrameOutput();
+  }
+
   void _onCanDataChanged() async {
     notifyListeners();
   }
@@ -64,10 +69,19 @@ class KellyCanData extends ChangeNotifier {
   final _receivePort = ReceivePort();
   int _failedReads = 0;
 
-  List<CanFrame> cframes = [];
+  Map<int, CanFrame> cframes = new Map();
+  Map<int, String> output = new Map();
 
   List<CanFrame> getFrames() {
-    return cframes;
+    return cframes.values.toList();
+  }
+
+  String getFrameOutput() {
+    String out = "";
+    for (var item in output.values) {
+      out += item.toString() + "\n";
+    }
+    return out;
   }
 
   Future setup() async {
@@ -83,7 +97,7 @@ class KellyCanData extends ChangeNotifier {
 
   void update(dynamic canData) {
     List<CanFrame> frames = canData;
-
+    String currentFrame = "";
     try {
       final failedReading = frames.isEmpty;
 
@@ -96,11 +110,33 @@ class KellyCanData extends ChangeNotifier {
           print("unable to read from can!");
         }
       } else {
-        if (_failedReads > 0) _failedReads = 0;
-        if (cframes.length > 9) {
-          cframes = [];
+        if (_failedReads > 0) {
+          _failedReads = 0;
         }
-        cframes.addAll(frames);
+        //cframes.addAll(frames);
+
+        for (CanFrame frame in frames) {
+          currentFrame = frame.id.toString() + "#" + frame.data.toString();
+          //print("frame: " + currentFrame);
+          if (cframes.keys.contains(frame.id)) {
+            //print("frame id already in list!");
+            cframes[frame.id ?? 0] = frame;
+            output[frame.id ?? 0] = currentFrame;
+            //print("updated frame value!");
+          } else {
+            if (cframes.keys.length < 21) {
+              //print("added frame to list");
+              cframes.addEntries({MapEntry(frame.id ?? 0, frame)});
+              output.addEntries({MapEntry(frame.id ?? 0, currentFrame)});
+            } else {
+              cframes.remove((cframes.keys.first));
+              cframes.addEntries({MapEntry(frame.id ?? 0, frame)});
+              output.remove(currentFrame);
+              output.addEntries({MapEntry(frame.id ?? 0, currentFrame)});
+              //print("frame exchange!");
+            }
+          }
+        }
 
         notifyListeners();
       }
