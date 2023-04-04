@@ -32,15 +32,17 @@ final canTrafficProvider =
 });
 
 class MotorControllerProvider extends ChangeNotifier {
+  late final KellyCanData _canData;
+  late bool isLoggingActive;
+  String log = "";
   MotorControllerProvider() {
     _canData = KellyCanData._(this);
 
     _canData.setup().then((_) {
       _canData.addListener(() => _onCanDataChanged());
     });
+    isLoggingActive = false;
   }
-
-  late final KellyCanData _canData;
 
   List<CanFrame> getFrames() {
     return _canData.getFrames();
@@ -48,6 +50,34 @@ class MotorControllerProvider extends ChangeNotifier {
 
   String getFrameOutput() {
     return _canData.getFrameOutput();
+  }
+
+  String getFrameOutputLogging() {
+    if (isLoggingActive) {
+      return _canData.getFrameOutput();
+    } else {
+      return "";
+    }
+  }
+
+  void toggleLogging(bool state) {
+    isLoggingActive = state;
+    if (log == "") {
+      log += "Start log!\n";
+    } else {
+      log += "Stop log!\n";
+      sendLog();
+      log = "";
+    }
+  }
+
+  void appendToLog(String frame) {
+    log += frame + "\n";
+  }
+
+  void sendLog() {
+    print(log);
+    print("Sent log!");
   }
 
   void _onCanDataChanged() async {
@@ -117,6 +147,9 @@ class KellyCanData extends ChangeNotifier {
 
         for (CanFrame frame in frames) {
           currentFrame = frame.id.toString() + "#" + frame.data.toString();
+          if (_controller.isLoggingActive) {
+            _controller.appendToLog(currentFrame);
+          }
           //print("frame: " + currentFrame);
           if (cframes.keys.contains(frame.id)) {
             //print("frame id already in list!");

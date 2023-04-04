@@ -28,6 +28,7 @@ class VISS {
 
     subscribe(socket, ref, VSPath.vehicleBoostLevel);
     subscribe(socket, ref, VSPath.vehicleBoostPressure);
+    subscribe(socket, ref, VSPath.vehicleLoggingState);
 
     update(socket, ref);
   }
@@ -48,6 +49,7 @@ class VISS {
     get(socket, ref, VSPath.vehicleTorque);
     get(socket, ref, VSPath.vehicleBoostLevel);
     get(socket, ref, VSPath.vehicleBoostPressure);
+    get(socket, ref, VSPath.vehicleLoggingState);
   }
 
   static void authorize(WebSocket socket, WidgetRef ref) {
@@ -182,6 +184,13 @@ class VISS {
                   //print("update torque!");
                   vehicleSignal.update(
                       torque: int.tryParse(dp["value"].toString()) ?? 0);
+                  break;
+                case VSPath.vehicleLoggingState:
+                  if (dp["value"].toString() == "true") {
+                    vehicleSignal.update(isLoggingActive: true);
+                  } else {
+                    vehicleSignal.update(isLoggingActive: false);
+                  }
                   break;
                 default:
                   print("$path Not Available yet!!");

@@ -24,4 +24,5 @@ class VSPath {
   static const String vehicleBoostLevel = "Vehicle.TurboCharger.BoostLevel";
   static const String vehicleBoostPressure =
       "Vehicle.TurboCharger.BoostPressure";
+  static const String vehicleLoggingState = "Vehicle.TurboCharger.LoggingState";
 }

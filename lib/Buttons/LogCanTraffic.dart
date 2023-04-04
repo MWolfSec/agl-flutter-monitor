@@ -4,6 +4,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_monitor/kuksa-server/vehicle-provider.dart';
+import 'package:flutter_monitor/kuksa-server/vehicle_methods.dart';
+import '../provider.dart';
 
 import '../size.dart';
 
@@ -23,13 +26,13 @@ class LogCanTraffic extends ConsumerStatefulWidget {
 class _LogState extends ConsumerState<LogCanTraffic>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  //late bool isAcActive;
+  late bool isLoggingActive;
   late Animation<Color?> _colorAnimation;
 
   @override
   void initState() {
     super.initState();
-
+    isLoggingActive = false;
     _controller = AnimationController(
       duration: Duration(milliseconds: 500),
       vsync: this,
@@ -43,10 +46,12 @@ class _LogState extends ConsumerState<LogCanTraffic>
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        //VISS.set(widget.socket, ref, widget.serverPath, isAcActive.toString());
+        VISS.set(
+            widget.socket, ref, widget.serverPath, isLoggingActive.toString());
       }
       if (status == AnimationStatus.dismissed) {
-        //VISS.set(widget.socket, ref, widget.serverPath, isAcActive.toString());
+        VISS.set(
+            widget.socket, ref, widget.serverPath, isLoggingActive.toString());
       }
     });
   }
@@ -60,6 +65,7 @@ class _LogState extends ConsumerState<LogCanTraffic>
 
   @override
   Widget build(BuildContext context) {
+    isLoggingActive = ref.watch(vehicleProvider).isLoggingActive;
     return AnimatedBuilder(
         animation: _controller,
         builder: (BuildContext context, _) {
@@ -70,13 +76,12 @@ class _LogState extends ConsumerState<LogCanTraffic>
                 maxWidth: SizeConfig.screenWidth * 0.15,
               ),
               decoration: BoxDecoration(
-                gradient: null,
-                /* isAcActive
+                gradient: isLoggingActive
                     ? RadialGradient(
                         colors: [Colors.black, Colors.lightBlue],
                         radius: 2,
                       )
-                    : null,*/
+                    : null,
                 border: Border.all(
                   color: Colors.white,
                   width: 2,
@@ -105,10 +110,11 @@ class _LogState extends ConsumerState<LogCanTraffic>
               ),
             ),
             onTap: () {
-              /*isAcActive ? _controller.reverse() : _controller.forward();
+              isLoggingActive ? _controller.reverse() : _controller.forward();
               ref
                   .read(vehicleProvider.notifier)
-                  .update(isAcActive: !isAcActive);*/
+                  .update(isLoggingActive: !isLoggingActive);
+              ref.read(canTrafficProvider).toggleLogging(isLoggingActive);
             },
           );
         });

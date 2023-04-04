@@ -232,7 +232,9 @@ class HomePage extends StatelessWidget {
                 Container(height: SizeConfig.screenHeight * 0.025),
                 Row(
                   children: [
-                    LogCanTraffic(socket: socket, serverPath: ''),
+                    LogCanTraffic(
+                        socket: socket,
+                        serverPath: 'Vehicle.TurboCharger.LoggingState'),
                     SizedBox(
                       height: SizeConfig.safeBlockVertical,
                     ),

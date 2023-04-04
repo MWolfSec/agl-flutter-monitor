@@ -22,6 +22,7 @@ class VehicleSignal extends StateNotifier<vehicle> {
     lon: 0.0,
     boostPressure: 0.0,
     boostLevel: 0,
+    isLoggingActive: false,
   );
   VehicleSignal() : super(intial_value);
 
@@ -39,6 +40,7 @@ class VehicleSignal extends StateNotifier<vehicle> {
     double? lon,
     double? boostPressure,
     int? boostLevel,
+    bool? isLoggingActive,
   }) {
     state = state.copywith(
       speed: speed,
@@ -54,6 +56,7 @@ class VehicleSignal extends StateNotifier<vehicle> {
       lon: lon,
       boostLevel: boostLevel,
       boostPressure: boostPressure,
+      isLoggingActive: isLoggingActive,
     );
   }
 }

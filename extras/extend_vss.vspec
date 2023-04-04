@@ -16,3 +16,8 @@ Vehicle.TurboCharger.BoostPressure:
   type: sensor
   unit: mbar
   description: Boost Pressure in Millibar
+
+Vehicle.TurboCharger.LoggingState:
+  datatype: boolean
+  type: actuator
+  description: Status indicator for Information Logging

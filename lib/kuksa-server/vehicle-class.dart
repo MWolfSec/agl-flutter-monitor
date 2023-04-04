@@ -16,6 +16,7 @@ class vehicle {
   late int fuellevel;
   late double boostPressure;
   late int boostLevel;
+  late bool isLoggingActive;
 
   vehicle({
     required this.speed,
@@ -31,6 +32,7 @@ class vehicle {
     required this.fuellevel,
     required this.boostLevel,
     required this.boostPressure,
+    required this.isLoggingActive,
   });
 
   vehicle copywith({
@@ -47,6 +49,7 @@ class vehicle {
     int? fuellevel,
     double? boostPressure,
     int? boostLevel,
+    bool? isLoggingActive,
   }) {
     return vehicle(
       speed: speed ?? this.speed,
@@ -62,6 +65,7 @@ class vehicle {
       fuellevel: fuellevel ?? this.fuellevel,
       boostLevel: boostLevel ?? this.boostLevel,
       boostPressure: boostPressure ?? this.boostPressure,
+      isLoggingActive: isLoggingActive ?? this.isLoggingActive,
     );
   }
 }

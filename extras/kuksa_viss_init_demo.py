@@ -68,6 +68,8 @@ class VSS:
         self.vehicleBoostLevel = "Vehicle.TurboCharger.BoostLevel"
         self.vehicleBoostPressure = "Vehicle.TurboCharger.BoostPressure"
 
+        self.vehicleLoggingState = "Vehicle.TurboCharger.LoggingState"
+
         
 
     def setInitialValues(self):
@@ -118,6 +120,7 @@ class VSS:
         
         self.client.setValue(self.vehicleBoostLevel,"30")
         self.client.setValue(self.vehicleBoostPressure, "800.0")
+        self.client.setValue(self.vehicleLoggingState, "false")
         print("All value set succesfully")
 
 
