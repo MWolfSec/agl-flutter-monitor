@@ -13,7 +13,7 @@ class CanViewer extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    String output = ref.watch(canTrafficProvider).getFrameOutput();
+    String output = ref.watch(canTrafficProvider).getFrameOutputLogging();
     return Text(
       output,
       style: TextStyle(
