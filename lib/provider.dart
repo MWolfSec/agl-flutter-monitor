@@ -26,6 +26,8 @@ class boostslider extends StateNotifier<int> {
 const _CAN_UPDATE_DURATION = const Duration(milliseconds: 50);
 const _CAN_UPDATE_DURATION_IN_HOURES = 50 / 1000 / 60 / 60;
 
+const filepath = "/home/agl-driver/logs/";
+
 final canTrafficProvider =
     ChangeNotifierProvider<MotorControllerProvider>((ref) {
   return MotorControllerProvider();
@@ -61,11 +63,14 @@ class MotorControllerProvider extends ChangeNotifier {
   }
 
   void toggleLogging(bool state) {
+    print("toggle logging!");
+    print("state " + state.toString());
     isLoggingActive = state;
     if (log == "") {
       log += "Start log!\n";
     } else {
       log += "Stop log!\n";
+      print("log: " + log);
       sendLog();
       log = "";
     }
@@ -76,7 +81,15 @@ class MotorControllerProvider extends ChangeNotifier {
   }
 
   void sendLog() {
-    print(log);
+    //print(log);
+    DateTime _now = DateTime.now();
+    String filename = (filepath +
+        'canlog-${_now.year}-${_now.month}-${_now.day}-${_now.hour}-${_now.minute}-${_now.second}.txt');
+    print(filename);
+    new File(filename).create().then((File file) {
+      file.writeAsString(log);
+    });
+
     print("Sent log!");
   }
 
@@ -137,7 +150,7 @@ class KellyCanData extends ChangeNotifier {
         _failedReads += 1;
         if (_failedReads >= _FAILED_READS_LIMIT) {
           //throw SocketException("Unable to read from can bus.");
-          print("unable to read from can!");
+          //print("unable to read from can!");
         }
       } else {
         if (_failedReads > 0) {
@@ -146,7 +159,9 @@ class KellyCanData extends ChangeNotifier {
         //cframes.addAll(frames);
 
         for (CanFrame frame in frames) {
-          currentFrame = frame.id.toString() + "#" + frame.data.toString();
+          currentFrame = int2hexstr(frame.id ?? 0) +
+              "#" +
+              data2hexstr(frame.data).toUpperCase();
           if (_controller.isLoggingActive) {
             _controller.appendToLog(currentFrame);
           }
@@ -176,6 +191,19 @@ class KellyCanData extends ChangeNotifier {
     } on SocketException {
       //print("socket exception");
     }
+  }
+
+  String int2hexstr(int val) {
+    String out = val.toRadixString(16);
+    return out;
+  }
+
+  String data2hexstr(List<int> data) {
+    String out = "";
+    for (int element in data) {
+      out += element.toRadixString(16);
+    }
+    return out;
   }
 
   /// Converts to bytes to one integer.

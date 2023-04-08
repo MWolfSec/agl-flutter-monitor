@@ -114,6 +114,7 @@ class _LogState extends ConsumerState<LogCanTraffic>
               ref
                   .read(vehicleProvider.notifier)
                   .update(isLoggingActive: !isLoggingActive);
+              isLoggingActive = !isLoggingActive;
               ref.read(canTrafficProvider).toggleLogging(isLoggingActive);
             },
           );
