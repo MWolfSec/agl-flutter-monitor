@@ -70,8 +70,8 @@ class MotorControllerProvider extends ChangeNotifier {
       log += "Start log!\n";
     } else {
       log += "Stop log!\n";
-      print("log: " + log);
-      sendLog();
+      //print("log: " + log);
+      sendLog(log);
       log = "";
     }
   }
@@ -80,14 +80,14 @@ class MotorControllerProvider extends ChangeNotifier {
     log += frame + "\n";
   }
 
-  void sendLog() {
+  void sendLog(String currentlog) {
     //print(log);
     DateTime _now = DateTime.now();
     String filename = (filepath +
         'canlog-${_now.year}-${_now.month}-${_now.day}-${_now.hour}-${_now.minute}-${_now.second}.txt');
     print(filename);
     new File(filename).create().then((File file) {
-      file.writeAsString(log);
+      file.writeAsString(currentlog);
     });
 
     print("Sent log!");
