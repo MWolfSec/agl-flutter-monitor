@@ -18,6 +18,8 @@ class ErrorMsg extends HookConsumerWidget {
     vehicle vehicledata = ref.watch(vehicleProvider);
     if (vehicledata.boostLevel > 60) {
       this.returnVal = "Error: BoostLevel too high!\nErrorCode: 0xAAFF0088FF";
+    } else {
+      this.returnVal = "";
     }
 
     return Text(returnVal,
